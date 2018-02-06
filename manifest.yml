@@ -1,6 +1,6 @@
 ---
 applications:
- - name: a2ademo
+ - name: SmartExpress
    buildpack: nodejs_buildpack
-   host: a2ademo
+   host: smartexpress
    memory: 256M
