@@ -1,0 +1,11 @@
+.DS_Store
+.idea/
+node_modules/
+semantic/tasks/
+semantic/dist/components/
+semantic/src/
+bower_components/
+package-lock.json
+semantic/gulpfile.js
+
+

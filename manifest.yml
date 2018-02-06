@@ -1,0 +1,6 @@
+---
+applications:
+ - name: a2ademo
+   buildpack: nodejs_buildpack
+   host: a2ademo
+   memory: 256M

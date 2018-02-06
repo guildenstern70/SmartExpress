@@ -1,0 +1,48 @@
+{% extends "skeleton.html" %}
+
+{% block topmenu %}
+<!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <ul class="dropdown menu" data-dropdown-menu>
+                <li><a href="/home"><img src="img/logo.png" width="80px" style="margin-top: -10px"></a></li>
+                <li><a href="/home"><b>Smart Express</b></a></li>
+                <li class="has-submenu">
+                    <a href="#0">Sezioni</a>
+                    <ul class="submenu menu vertical" data-submenu>
+                        <li><a href="#0">Pianificazione Tecnica</a></li>
+                        <li><a href="#0">Manutenzione</a></li>
+                        <li><a href="#0">Conduzione</a></li>
+                        <li><a href="#0">Combustibili</a></li>
+                        <li><a href="#0">Consuntivazione</a></li>
+                        <li><a href="#0">Dati Ambientali</a></li>
+                        <li><a href="#0">Amministratore</a></li>
+                    </ul>
+                </li>
+                <li><a href="#0">Frequenti</a></li>
+                <li class="has-submenu">
+                        <a href="#0">{{ username | capitalize }}</a>
+                        <ul class="submenu menu vertical" data-submenu>
+                                <li><a href="/">Logout</a></li>
+                        </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li><input type="search" placeholder="Cerca..."></li>
+                <li><button type="button" class="button">
+                    Cerca</button></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row columns">
+    <div style="margin-top: 15px"></div>
+</div>
+
+
+<!-- TOP BAR -->
+{% endblock %}
+
+

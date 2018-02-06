@@ -1,0 +1,65 @@
+{% extends "skeleton.html" %}
+
+{% block title %}
+SmartExpress | {{ title }}
+{% endblock %}
+
+{% block extraheader %}
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<script src="js/hideshowpassword.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row columns spacer">
+    <div class="text-center">
+            <img src="img/logo.png" width="150px">
+    </div>
+</div>
+<div class="row spacer">
+        <div class="show-for-medium medium-3 large-4 columns">
+            &nbsp;
+        </div>
+        <div class="small-12 medium-6 large-4 columns">
+                <form id="loginform" class="log-in-form" action="/" method="post" data-abide novalidate>
+                    <h5 class="primary text-center a2a"><strong>Login</strong></h5>
+                    <label>Utenza
+                        <input id="username" name="username" type="text" placeholder="Utenza..." required>
+                        <span class="form-error" data-form-error-for="username">
+                          Immettere un'utenza
+                        </span>
+                    </label>
+                    <label>Password
+                        <input id="password" name="password" type="password" placeholder="Password..." required>
+                        <span class="form-error">
+                          Immettere una password valida
+                        </span>
+                    </label>
+                    {% if error %}
+                    <div data-abide-error class="alert callout">
+                        <p><i class="fi-alert"></i>{{ error }}</p>
+                    </div>
+                    {% else %}
+                    <div data-abide-error class="alert callout" style="display: none;">
+                        <p><i class="fi-alert"></i> Errore di login</p>
+                    </div>
+                    {% endif %}
+
+                    <div>
+                        <input id="show-password" type="checkbox"><label for="show-password">Mostra password</label>
+                    </div>
+                    <div>
+                        <input type="submit" class="button expanded" value="Log in">
+                    </div>
+                    <button type="reset" class="clear button expanded">Reset</button>
+                </form>
+        </div>
+        <div class="show-for-medium medium-3 large-4 columns">
+                &nbsp;
+        </div>
+</div>
+
+{% endblock %}
+
+{% block latejavascripts %}
+<script src="js/login.js"></script>
+{% endblock %}

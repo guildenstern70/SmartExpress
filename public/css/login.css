@@ -1,0 +1,11 @@
+body {
+  background-color: #e6e6e6;
+}
+.log-in-form {
+  border: 1px solid #cacaca;
+  padding: 1rem;
+  border-radius: 0;
+}
+.spacer {
+  margin-top: 80px;
+}
