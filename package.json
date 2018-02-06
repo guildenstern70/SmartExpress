@@ -1,6 +1,6 @@
 {
-  "name": "a2a-web",
-  "description": "A2A N2 New",
+  "name": "SmartExpress",
+  "description": "A sample Node.js Web App",
   "version": "0.0.1",
   "private": true,
   "engines": {
