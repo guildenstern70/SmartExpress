@@ -1,6 +1,6 @@
 /*
 
-    A2A N2
+    SmartExpress N2
     Node.js initializer
 
  */
@@ -21,6 +21,7 @@ var nunjucks  = require('nunjucks');
 // Routes
 var login = require('./routes/login');
 var home = require('./routes/home');
+var reports = require('./routes/reports');
 var api = require('./routes/api');
 
 // Http Server
@@ -62,6 +63,7 @@ app.use(session({
 // Navigation routes
 app.use('/', login);
 app.use('/home', home);
+app.use('/reports', reports);
 app.use('/api/v1', api);
 
 // catch 404 and forward to error handler
