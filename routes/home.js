@@ -5,15 +5,15 @@
 
  */
 
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const TEMPLATE = 'home.html';
 
-var sessionUser = function (req) {
+const sessionUser = function (req) {
 
     console.log('Retrieving session data...');
-    var user = req.session.username; // Get username from session
+    const user = req.session.username; // Get username from session
     console.log('User is ' + user);
 
     return user;
@@ -24,7 +24,7 @@ router.get('/', function(req, res) {
 
     console.log('Home page GET');
 
-    var context = {
+    const context = {
         title: "Home",
         username: sessionUser(req)
     };

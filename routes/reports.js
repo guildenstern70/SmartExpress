@@ -5,10 +5,10 @@
 
  */
 
-var express = require('express');
-var request = require('request');
+const express = require('express');
+const request = require('request');
 
-var router = express.Router();
+const router = express.Router();
 
 const TEMPLATE = 'reports.html';
 const REPORTS_WS_URL = 'http://localhost:3000/api/v1/reportsdata';
@@ -16,11 +16,11 @@ const REPORTS_WS_URL = 'http://localhost:3000/api/v1/reportsdata';
 /* DELETE report page. */
 router.get('/deleterecord', function (req, res) {
 
-    var id = req.query.id;
+    const id = req.query.id;
 
     if (id) {
 
-        var url = REPORTS_WS_URL+"?id="+id;
+        const url = REPORTS_WS_URL+"?id="+id;
 
         // Call WS asynchronously
         request.delete(url, {json: true}, function (err, wsres) {
@@ -53,7 +53,7 @@ router.get('/', function (req, res) {
 
         console.log('Ok received > ' + JSON.stringify(wsres.body));
 
-        var context = wsres.body;
+        const context = wsres.body;
         context.title = "Reports";
         context.username = req.session.username;
 

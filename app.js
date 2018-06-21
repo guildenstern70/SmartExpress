@@ -5,30 +5,28 @@
 
  */
 
-'use strict';
-
 // Required libraries
-var express = require('express');
-var session = require('express-session');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var cfenv = require("cfenv");
-var nunjucks  = require('nunjucks');
+const express = require('express');
+const session = require('express-session');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const cfenv = require("cfenv");
+const nunjucks  = require('nunjucks');
 
 // Routes
-var login = require('./routes/login');
-var home = require('./routes/home');
-var reports = require('./routes/reports');
-var api = require('./routes/api');
+const login = require('./routes/login');
+const home = require('./routes/home');
+const reports = require('./routes/reports');
+const api = require('./routes/api');
 
 // Http Server
-var app = express();
+const app = express();
 
 // Bluemix VCAP
-var vcapLocal;
+let vcapLocal;
 try {
     vcapLocal = require('./vcap-local.json');
     console.log("Loaded local VCAP", vcapLocal);
@@ -52,7 +50,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.use(session({
     secret: 'axsaxs',
     resave: false,
@@ -68,7 +66,7 @@ app.use('/api/v1', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -85,6 +83,14 @@ app.use(function(err, req, res, next) {
 
   res.status(err.status || 500);
 
+});
+
+app.listen(3000, function () {
+  console.log('Smart Express is running...');
+  if (!process.env.VCAP_SERVICES)
+  {
+      console.log('http://localhost:3000');
+  }
 });
 
 module.exports = app;

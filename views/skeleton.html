@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="css/app.css"><!-- Foundation CSS -->
-    <link rel="stylesheet" href="bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.css"><!-- Fontawesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+          crossorigin="anonymous"><!-- Font Awesome -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"><!-- Font -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
@@ -33,8 +35,8 @@
     {% block content %}{% endblock %}
     {% block latejavascripts %}{% endblock %}
 
-    <script src="bower_components/what-input/dist/what-input.js"></script>
-    <script src="bower_components/foundation-sites/dist/js/foundation.js"></script>
+    <script src="/node_modules/what-input/dist/what-input.js"></script>
+    <script src="/node_modules/foundation-sites/dist/js/foundation.js"></script>
     <script>
         $(document).foundation();
     </script>

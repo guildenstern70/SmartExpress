@@ -5,10 +5,10 @@
 
  */
 
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var reports = {
+const reports = {
     title: 'Reports',
     items: [
         {
@@ -71,9 +71,9 @@ router.post('/reportsdata', function (req, res) {
 /* DELETE existing report */
 router.delete('/reportsdata', function (req, res) {
 
-    var id = Number(req.query.id);
-    for (var idx in reports.items) {
-        var item = reports.items[idx];
+    const id = Number(req.query.id);
+    for (let idx in reports.items) {
+        const item = reports.items[idx];
         if (item.id === id) {
             console.log('Deleting item at ' + idx);
             delete reports.items[idx];
