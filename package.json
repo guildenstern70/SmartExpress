@@ -1,10 +1,10 @@
 {
-  "name": "SmartExpress",
+  "name": "smart-express",
   "description": "A sample Node.js Web App",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "engines": {
-    "node": "9.*"
+    "node": "10.13.0"
   },
   "scripts": {
     "start": "node app.js",
@@ -13,23 +13,23 @@
     "browse-mac": "concurrently \"node app.js\" \"open http://localhost:3000\""
   },
   "dependencies": {
-    "body-parser": "~1.18.2",
-    "cfenv": "^1.0.x",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "dotenv": "^4.0.0",
-    "express": "~4.15.5",
-    "express-session": "~1.15.6",
+    "body-parser": "^1.18.3",
+    "cfenv": "^1.1.0",
+    "cookie-parser": "^1.4.3",
+    "debug": "^4.1.0",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "foundation-sites": "~6.4.0",
     "jquery": "^3.3.1",
     "hideshowpassword": "^2.1.1",
-    "morgan": "~1.9.0",
-    "nunjucks": "^3.0.1",
+    "morgan": "^1.9.1",
+    "nunjucks": "^3.1.6",
     "request": "^2.83.0",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.5.0"
   },
   "devDependencies": {
-    "concurrently": "~3.5.1",
+    "concurrently": "^4.1.0",
     "open": "~0.0.5"
   },
   "author": "Alessio Saltarin",
