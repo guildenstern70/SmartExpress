@@ -27,5 +27,5 @@ Simple template Node.js Web App
 
 On Mac use
 
-    npm run browse-mac    
+    yarn browse-mac    
     

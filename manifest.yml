@@ -1,6 +1,11 @@
 ---
 applications:
  - name: SmartExpress
-   buildpack: nodejs_buildpack
-   host: smartexpress
+   buildpacks:
+     - nodejs_buildpack
+   routes:
+     - route: smartexpress.eu-de.mybluemix.net
    memory: 256M
+   env:
+     FORCE_HTTPS: true
+
