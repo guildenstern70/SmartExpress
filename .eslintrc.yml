@@ -1,0 +1,33 @@
+env:
+  browser: true
+  node: true
+  es6: true
+extends:
+  - 'eslint:recommended'
+parserOptions:
+  ecmaVersion: 8
+  sourceType: module
+rules:
+  complexity:
+    - warn
+  no-undef:
+    - off
+  no-unused-vars:
+    - off
+  no-console:
+    - off
+  indent:
+    - off
+  linebreak-style:
+    - warn
+    - unix
+  quotes:
+    - warn
+    - single
+  eqeqeq:
+    - warn
+  semi:
+    - off
+    - always
+  prefer-const:
+    - warn

@@ -15,47 +15,49 @@ const router = express.Router();
 const TEMPLATE = 'login.html';
 const LOGIN_URL = constants.WS_URL + '/users/login';
 
-let sessionData = {
+const sessionData = {
     username: '',
     userid: -1,
-    fullname: ''
+    fullname: '',
 };
 
 const login = function(req, res) {
-
     const loginObj = req.body;
-    logger.info("Checking login for " + JSON.stringify(loginObj));
+    logger.info('Checking login for ' + JSON.stringify(loginObj));
     logger.info('Calling WS at ' + LOGIN_URL);
 
     const jsonRequest = {
         username: loginObj.username,
-        password: loginObj.password
+        password: loginObj.password,
     };
 
     const options = {
         method: 'post',
         body: jsonRequest,
         json: true,
-        url: LOGIN_URL
+        url: LOGIN_URL,
     };
 
     // Call login web service (LOGIN_URL)
-    request(options, function (err, httpResponse, body) {
-
+    request(options, function(err, httpResponse, body) {
         if (err) {
             logger.error(err);
             res.redirect('/login?error=' + err);
-        }
-        else {
-            logger.info("Received HTTP response: " + JSON.stringify(httpResponse));
+        } else {
+            logger.info(
+                'Received HTTP response: ' + JSON.stringify(httpResponse)
+            );
             if (httpResponse.statusCode === 200) {
-                let responseObject = httpResponse;
+                const responseObject = httpResponse;
                 sessionData.username = responseObject.body.username;
-                sessionData.fullname = responseObject.body.nome + " " + responseObject.body.cognome;
+                sessionData.fullname =
+                    responseObject.body.nome +
+                    ' ' +
+                    responseObject.body.cognome;
                 sessionData.userid = responseObject.body.utentiID;
-                logger.info("Welcome " + sessionData.fullname);
+                logger.info('Welcome ' + sessionData.fullname);
                 const httpSession = req.session;
-                httpSession.login = sessionData;  // Save to session
+                httpSession.login = sessionData; // Save to session
                 if (loginObj.target) {
                     logger.info('Redirecting to ' + loginObj.target);
                     res.redirect(loginObj.target);
@@ -63,8 +65,7 @@ const login = function(req, res) {
                     logger.info('Unknow target. Redirecting to home');
                     res.redirect('/');
                 }
-            }
-            else {
+            } else {
                 const error = 'Utente sconosciuto';
                 logger.info(error);
                 res.redirect('/login?error=' + error);
@@ -75,7 +76,6 @@ const login = function(req, res) {
 
 /* GET login page. */
 router.get('/', function(req, res) {
-
     logger.info('Login page GET');
     const error = req.query.error;
     let targetUrl = '/';
@@ -86,19 +86,15 @@ router.get('/', function(req, res) {
     res.render(TEMPLATE, {
         title: 'Login',
         targetUrl,
-        error
+        error,
     });
 });
 
 /* POST login page. */
-router.post('/', function (req, res) {
-
+router.post('/', function(req, res) {
     logger.info('Login page POST');
     logger.info(JSON.stringify(req.body));
     login(req, res);
-
 });
 
-
 module.exports = router;
-

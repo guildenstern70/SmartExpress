@@ -14,7 +14,6 @@ const router = express.Router();
 const TEMPLATE = 'home.html';
 
 const sessionUser = function(req) {
-
     logger.info('Retrieving session data...');
     const user = req.session.login.fullname; // Get username from session
     logger.info('User is ' + user);
@@ -24,12 +23,11 @@ const sessionUser = function(req) {
 
 /* GET home page. */
 router.get('/', ca.checkAuth, function(req, res) {
-
     logger.info('Home page GET');
 
     const context = {
-        title: "Home",
-        username: sessionUser(req)
+        title: 'Home',
+        username: sessionUser(req),
     };
 
     res.render(TEMPLATE, context);

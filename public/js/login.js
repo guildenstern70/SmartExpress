@@ -1,6 +1,13 @@
-$(document).ready(function() {
-  $('#show-password').change(function() {
-    logger.info('Toggle password');
-    $('#password').togglePassword();
-  });
+/*
+
+    SmartExpress N2
+    Client code: login.js
+
+ */
+
+$(function() {
+    $('#show-password').change(function() {
+        console.log('Toggle password');
+        $('#password').togglePassword();
+    });
 });

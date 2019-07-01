@@ -9,6 +9,7 @@ Simple template Node.js Web App
 * Template Engine: Nunjucks
 * Style Engines: LESS
 * Package Manager: yarn
+* Linter: eslint
 
 ##### Setup Node.js
 
@@ -23,9 +24,18 @@ Simple template Node.js Web App
 ##### Initialize & Run project
 
     yarn install
-    yarn browse 
+    yarn start 
 
-On Mac use
 
-    yarn browse-mac    
+##### Run linter
+
+    yarn lint
+    
+Auto-fix:
+
+    yarn lint-fix
+    
+    
+    
+   
     

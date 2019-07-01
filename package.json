@@ -4,11 +4,14 @@
   "version": "0.1.1",
   "private": true,
   "engines": {
-    "node": "10.10.0"
+    "node": "10.13.0"
   },
   "scripts": {
     "start": "node app.js",
-    "build": "yarn install"
+    "build": "yarn install",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
+    "prettify": "prettier --single-quote --trailing-comma es5 --write \"routes/*.js\" \"public/js/*.js\""
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -18,16 +21,18 @@
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "foundation-sites": "^6.5.3",
-    "what-input": "^5.2.1",
-    "jquery": "^3.4.1",
     "hideshowpassword": "^2.1.1",
+    "jquery": "^3.4.1",
     "nunjucks": "^3.2.0",
     "request": "^2.88.0",
     "serve-favicon": "~2.5.0",
+    "what-input": "^5.2.1",
     "winston": "^2.4.4"
   },
   "devDependencies": {
-    "debug": "^4.1.1"
+    "debug": "^4.1.1",
+    "eslint": "^6.0.1",
+    "prettier": "1.18.2"
   },
   "author": "Alessio Saltarin",
   "license": "ISC"

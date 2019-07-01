@@ -14,7 +14,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const cfenv = require("cfenv");
+const cfenv = require('cfenv');
 const nunjucks  = require('nunjucks');
 const logger = require('winston');
 
@@ -31,8 +31,10 @@ const app = express();
 let vcapLocal;
 try {
     vcapLocal = require('./vcap-local.json');
-    logger.info("Loaded local VCAP", vcapLocal);
-} catch (e) { }
+    logger.info('Loaded local VCAP', vcapLocal);
+} catch (e) {
+    logger.error(e.toString());
+}
 const appEnvOpts = vcapLocal ? { vcap: vcapLocal} : {};
 const appEnv = cfenv.getAppEnv(appEnvOpts);
 
@@ -85,7 +87,7 @@ app.use(function(err, req, res, next) {
 
   // logs error
   logger.info('ERROR:');
-  logger.info(err.status+"> "+ err.message);
+  logger.info(err.status+'> '+ err.message);
 
   res.status(err.status || 500);
 
