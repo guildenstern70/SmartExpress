@@ -7,6 +7,8 @@
 
 const express = require('express');
 const request = require('request');
+const logger = require('winston');
+const ca = require('./authorization');
 
 const router = express.Router();
 
@@ -14,7 +16,7 @@ const TEMPLATE = 'reports.html';
 const REPORTS_WS_URL = 'http://localhost:3000/api/v1/reportsdata';
 
 /* DELETE report page. */
-router.get('/deleterecord', function (req, res) {
+router.get('/deleterecord', ca.checkAuth, function (req, res) {
 
     const id = req.query.id;
 
@@ -26,12 +28,12 @@ router.get('/deleterecord', function (req, res) {
         request.delete(url, {json: true}, function (err, wsres) {
 
             if (err) {
-                console.log('ERROR: ' + err);
-                console.log(JSON.stringify(wsres));
+                logger.info('ERROR: ' + err);
+                logger.info(JSON.stringify(wsres));
                 return;
             }
 
-            console.log('Ok received > ' + JSON.stringify(wsres.body));
+            logger.info('Ok received > ' + JSON.stringify(wsres.body));
             res.redirect('/');
         });
 
@@ -46,12 +48,12 @@ router.get('/', function (req, res) {
     request.get(REPORTS_WS_URL, {json: true}, function (err, wsres) {
 
         if (err) {
-            console.log('ERROR: ' + err);
-            console.log(JSON.stringify(wsres));
+            logger.info('ERROR: ' + err);
+            logger.info(JSON.stringify(wsres));
             return;
         }
 
-        console.log('Ok received > ' + JSON.stringify(wsres.body));
+        logger.info('Ok received > ' + JSON.stringify(wsres.body));
 
         const context = wsres.body;
         context.title = "Reports";

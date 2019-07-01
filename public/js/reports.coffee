@@ -1,3 +1,6 @@
+WS_REST_URL_AZURE = "http://a2arest.azurewebsites.net/api/System/live"
+WS_REST_URL_LOCAL = "http://localhost:3000/api/v1/reportsdata"
+
 exports = this
 
 exports.askfordelete = (id, name) ->
@@ -22,7 +25,7 @@ exports.savenew = () ->
     if (data.name) && (data.date)
         console.log('Sending POST ' + JSON.stringify(data))
         $.ajax
-            url: 'http://localhost:3000/api/v1/reportsdata'
+            url: WS_REST_URL_LOCAL
             type: 'POST'
             data: data
             success: ->
@@ -41,7 +44,7 @@ exports.deleteitem = (id) ->
     $('#confirmation').remove()
     console.log 'Ok to delete ' + id
     $.ajax
-        url: 'http://localhost:3000/api/v1/reportsdata?id=' + id
+        url: WS_REST_URL_LOCAL+'?id=' + id
         type: 'DELETE'
         success: ->
             console.log 'Ok, deleted.'

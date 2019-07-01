@@ -6,68 +6,96 @@
  */
 
 const express = require('express');
+const logger = require('winston');
+const request = require('request');
+const constants = require('./constants');
+
 const router = express.Router();
 
 const TEMPLATE = 'login.html';
+const LOGIN_URL = constants.WS_URL + '/users/login';
 
-const knownUsers = [
-    { username: 'alessio', password: 'doctor' },
-    { username: 'admin', password: 'admin00' }
-];
+let sessionData = {
+    username: '',
+    userid: -1,
+    fullname: ''
+};
 
-const isUserKnown = function(user, pwd) {
+const login = function(req, res) {
 
-    console.log('Is user ' + user + ' with pwd=' + pwd + " known?");
+    const loginObj = req.body;
+    logger.info("Checking login for " + JSON.stringify(loginObj));
+    logger.info('Calling WS at ' + LOGIN_URL);
 
-    for (let i = 0; knownUsers.length > i; i += 1) {
-        if (knownUsers[i].username === user) {
-            if ( knownUsers[i].password === pwd)
-                return { loggedIn: true, message: 'OK' };
-            else
-                return { loggedIn: false, message: 'Password sbagliata' };
+    const jsonRequest = {
+        username: loginObj.username,
+        password: loginObj.password
+    };
+
+    const options = {
+        method: 'post',
+        body: jsonRequest,
+        json: true,
+        url: LOGIN_URL
+    };
+
+    // Call login web service (LOGIN_URL)
+    request(options, function (err, httpResponse, body) {
+
+        if (err) {
+            logger.error(err);
+            res.redirect('/login?error=' + err);
         }
-    }
-
-    return { loggedIn: false, message: 'Utente sconosciuto' };
-
+        else {
+            logger.info("Received HTTP response: " + JSON.stringify(httpResponse));
+            if (httpResponse.statusCode === 200) {
+                let responseObject = httpResponse;
+                sessionData.username = responseObject.body.username;
+                sessionData.fullname = responseObject.body.nome + " " + responseObject.body.cognome;
+                sessionData.userid = responseObject.body.utentiID;
+                logger.info("Welcome " + sessionData.fullname);
+                const httpSession = req.session;
+                httpSession.login = sessionData;  // Save to session
+                if (loginObj.target) {
+                    logger.info('Redirecting to ' + loginObj.target);
+                    res.redirect(loginObj.target);
+                } else {
+                    logger.info('Unknow target. Redirecting to home');
+                    res.redirect('/');
+                }
+            }
+            else {
+                const error = 'Utente sconosciuto';
+                logger.info(error);
+                res.redirect('/login?error=' + error);
+            }
+        }
+    });
 };
 
 /* GET login page. */
 router.get('/', function(req, res) {
 
-    console.log('Login page GET');
-
+    logger.info('Login page GET');
     const error = req.query.error;
-
+    let targetUrl = '/';
+    if (req.query.target) {
+        logger.info('Asking for URL = ' + req.query.target);
+        targetUrl = req.query.target;
+    }
     res.render(TEMPLATE, {
         title: 'Login',
-        error: error
+        targetUrl,
+        error
     });
 });
-
 
 /* POST login page. */
 router.post('/', function (req, res) {
 
-    console.log('Login page POST');
-    console.log(JSON.stringify(req.body));
-
-    const username = req.body.username;
-    const userKnown = isUserKnown(username, req.body.password);
-    console.log(JSON.stringify(userKnown));
-
-    if (userKnown.loggedIn) {
-        console.log('User is ' + username);
-        const sessionData = req.session;
-        sessionData.username = username;  // Save username to session
-        res.redirect('/home');
-    }
-    else {
-        console.log('Login failed for ' + username);
-        console.log('Error: ' + userKnown.message);
-        res.redirect('/?error=' + userKnown.message);
-    }
-
+    logger.info('Login page POST');
+    logger.info(JSON.stringify(req.body));
+    login(req, res);
 
 });
 

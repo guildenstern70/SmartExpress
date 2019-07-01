@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('#show-password').change(function() {
-    console.log('Toggle password');
+    logger.info('Toggle password');
     $('#password').togglePassword();
   });
 });

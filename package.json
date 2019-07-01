@@ -1,16 +1,14 @@
 {
   "name": "smart-express",
-  "description": "A sample Node.js Web App",
-  "version": "0.0.3",
+  "description": "A sample Node.js Web App with Express.js and Zurb Foundation for Sites 6",
+  "version": "0.1.1",
   "private": true,
   "engines": {
-    "node": "10.13.0"
+    "node": "10.10.0"
   },
   "scripts": {
     "start": "node app.js",
-    "build": "yarn install",
-    "browse": "concurrently \"node app.js\" \"start http://localhost:3000\"",
-    "browse-mac": "concurrently \"node app.js\" \"open http://localhost:3000\""
+    "build": "yarn install"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -18,20 +16,18 @@
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "express-session": "^1.16.1",
+    "express-session": "^1.16.2",
     "foundation-sites": "^6.5.3",
     "what-input": "^5.2.1",
     "jquery": "^3.4.1",
     "hideshowpassword": "^2.1.1",
-    "morgan": "^1.9.1",
     "nunjucks": "^3.2.0",
     "request": "^2.88.0",
-    "serve-favicon": "~2.5.0"
+    "serve-favicon": "~2.5.0",
+    "winston": "^2.4.4"
   },
   "devDependencies": {
-    "concurrently": "^4.1.0",
-    "debug": "^4.1.1",
-    "open": "~0.0.5"
+    "debug": "^4.1.1"
   },
   "author": "Alessio Saltarin",
   "license": "ISC"
