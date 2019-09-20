@@ -5,9 +5,6 @@
 
  */
 
-const WS_REST_URL_AZURE = 'http://a2arest.azurewebsites.net/api/System/live';
-const WS_REST_URL_LOCAL = 'http://localhost:3000/api/v1/version';
-
 const callWS = $.ajax({
     type: 'GET',
     url: WS_REST_URL_LOCAL,

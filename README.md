@@ -24,6 +24,7 @@ Simple template Node.js Web App
 ##### Initialize & Run project
 
     yarn install
+    yarn build
     yarn start 
 
 
