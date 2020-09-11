@@ -7,6 +7,8 @@
 
 const express = require('express');
 const request = require('request');
+const logger = require('winston');
+const ca = require('./authorization');
 
 const router = express.Router();
 
@@ -14,53 +16,45 @@ const TEMPLATE = 'reports.html';
 const REPORTS_WS_URL = 'http://localhost:3000/api/v1/reportsdata';
 
 /* DELETE report page. */
-router.get('/deleterecord', function (req, res) {
-
+router.get('/deleterecord', ca.checkAuth, function(req, res) {
     const id = req.query.id;
 
     if (id) {
-
-        const url = REPORTS_WS_URL+"?id="+id;
+        const url = REPORTS_WS_URL + '?id=' + id;
 
         // Call WS asynchronously
-        request.delete(url, {json: true}, function (err, wsres) {
-
+        request.delete(url, { json: true }, function(err, wsres) {
             if (err) {
-                console.log('ERROR: ' + err);
-                console.log(JSON.stringify(wsres));
+                logger.error('ERROR: ' + err);
+                logger.error(JSON.stringify(wsres));
                 return;
             }
 
-            console.log('Ok received > ' + JSON.stringify(wsres.body));
+            logger.info('Ok delete received > ' + JSON.stringify(wsres.body));
             res.redirect('/');
         });
-
     }
     res.redirect('/');
 });
 
 /* GET reports page. */
-router.get('/', function (req, res) {
-
+router.get('/', function(req, res) {
     // Call WS asynchronously
-    request.get(REPORTS_WS_URL, {json: true}, function (err, wsres) {
-
+    request.get(REPORTS_WS_URL, { json: true }, function(err, wsres) {
         if (err) {
-            console.log('ERROR: ' + err);
-            console.log(JSON.stringify(wsres));
+            logger.error('ERROR: ' + err);
+            logger.error(JSON.stringify(wsres));
             return;
         }
 
-        console.log('Ok received > ' + JSON.stringify(wsres.body));
+        logger.info('Ok get received > ' + JSON.stringify(wsres.body));
 
         const context = wsres.body;
-        context.title = "Reports";
+        context.title = 'Reports';
         context.username = req.session.username;
 
         res.render(TEMPLATE, context);
     });
-
-
 });
 
 module.exports = router;

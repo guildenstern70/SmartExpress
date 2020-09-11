@@ -6,7 +6,7 @@ SmartExpress | {{ title }}
 
 {% block extraheader %}
 <link rel="stylesheet" type="text/css" href="css/login.css">
-<script src="js/hideshowpassword.min.js"></script>
+<script src="js/thirdparty/hideshowpassword.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -20,8 +20,11 @@ SmartExpress | {{ title }}
             &nbsp;
         </div>
         <div class="small-12 medium-6 large-4 columns">
-                <form id="loginform" class="log-in-form" action="/" method="post" data-abide novalidate>
+                <form id="loginform" class="log-in-form" action="/login" method="post" data-abide novalidate>
                     <h5 class="primary text-center a2a"><strong>Login</strong></h5>
+                    {% if targetUrl %}
+                    <input name="target" id="target" type="hidden" value={{targetUrl}}>
+                    {% endif %}
                     <label>Utenza
                         <input id="username" name="username" type="text" placeholder="Utenza..." required>
                         <span class="form-error" data-form-error-for="username">
