@@ -27,17 +27,6 @@ const api = require('./routes/api');
 // Http Server
 const app = express();
 
-// Bluemix VCAP
-let vcapLocal;
-try {
-    vcapLocal = require('./vcap-local.json');
-    logger.info('Loaded local VCAP', vcapLocal);
-} catch (e) {
-    logger.error(e.toString());
-}
-const appEnvOpts = vcapLocal ? { vcap: vcapLocal} : {};
-const appEnv = cfenv.getAppEnv(appEnvOpts);
-
 // View Engine: Nunjucks
 app.set('view engine', 'nunjucks');
 nunjucks.configure(app.get('views'), {
@@ -71,27 +60,6 @@ app.use('/login', login);
 app.use('/home', home);
 app.use('/reports', reports);
 app.use('/api/v1', api);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // logs error
-  logger.info('ERROR:');
-  logger.info(err.status+'> '+ err.message);
-
-  res.status(err.status || 500);
-
-});
 
 app.listen(3000, function () {
   logger.info('Smart Express v.' + jsonPackage.version);
