@@ -25,18 +25,26 @@ Simple template Node.js Web App
 
     yarn install
     yarn build
-    yarn start 
+    yarn start
 
 
 ##### Run linter
 
     yarn lint
-    
+
 Auto-fix:
 
     yarn lint-fix
-    
-    
-    
-   
-    
+
+#### Build a Docker image
+
+    podman build -t smart-express .
+
+#### Run as Docker image
+
+    podman run -p 3000:3000 smart-express
+
+
+
+
+

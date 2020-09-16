@@ -1,7 +1,7 @@
 {
     "name": "smart-express",
     "description": "A sample Node.js Web App with Express.js and Zurb Foundation for Sites 6",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "private": true,
     "engines": {
         "node": ">=10.13.0"
