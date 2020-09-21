@@ -44,6 +44,11 @@ Auto-fix:
 
     podman run -p 3000:3000 smart-express
 
+#### Deploy to Quay.io
+
+    sudo podman login -u guildenstern70 -p qLKmatt07 quay.io
+    skopeo copy containers-storage:localhost/smart-express:latest docker://quay.io/guildenstern70/smart-express:latest
+
 
 
 
