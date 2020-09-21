@@ -39,7 +39,7 @@
         "express-session": "^1.16.2",
         "foundation-sites": "^6.5.3",
         "hideshowpassword": "^2.1.1",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "nunjucks": "^3.2.0",
         "request": "^2.88.0",
         "serve-favicon": "~2.5.0",
