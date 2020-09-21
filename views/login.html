@@ -21,7 +21,7 @@ SmartExpress | {{ title }}
         </div>
         <div class="small-12 medium-6 large-4 columns">
                 <form id="loginform" class="log-in-form" action="/login" method="post" data-abide novalidate>
-                    <h5 class="primary text-center a2a"><strong>Login</strong></h5>
+                    <h6 class="primary text-center a2a"><strong>Login v.{{version}}</strong></h6>
                     {% if targetUrl %}
                     <input name="target" id="target" type="hidden" value={{targetUrl}}>
                     {% endif %}

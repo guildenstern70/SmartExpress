@@ -9,6 +9,7 @@ const express = require('express');
 const logger = require('winston');
 const request = require('request');
 const constants = require('./constants');
+const packagejson = require('../package.json');
 
 const router = express.Router();
 
@@ -78,6 +79,7 @@ const login = function(req, res) {
 router.get('/', function(req, res) {
     logger.info('Login page GET');
     const error = req.query.error;
+    const version = packagejson.version;
     let targetUrl = '/';
     if (req.query.target) {
         logger.info('Asking for URL = ' + req.query.target);
@@ -85,6 +87,7 @@ router.get('/', function(req, res) {
     }
     res.render(TEMPLATE, {
         title: 'Login',
+        version,
         targetUrl,
         error,
     });
