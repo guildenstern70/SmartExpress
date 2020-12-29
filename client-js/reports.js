@@ -8,7 +8,7 @@
 const askfordelete = function(id, name) {
     confirm(
         'Really delete item #' + id + '?',
-        "Select 'Yes' if you want to delete " + name,
+        'Select \'Yes\' if you want to delete ' + name,
         id
     );
 };

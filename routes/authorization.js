@@ -9,7 +9,7 @@ const logger = require('winston');
 
 const checkAuth = function(req, res, next) {
     if (!req.session.login || !req.session.login.username) {
-        if (req.originalUrl && req.originalUrl != '/') {
+        if (req.originalUrl && req.originalUrl !== '/') {
             logger.info('Requested: '+ req.originalUrl);
             logger.info(
                 'User is not authorized to view the page ' + req.originalUrl

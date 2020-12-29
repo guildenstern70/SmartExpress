@@ -14,7 +14,6 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const cfenv = require('cfenv');
 const nunjucks  = require('nunjucks');
 const logger = require('winston');
 
@@ -63,10 +62,7 @@ app.use('/api/v1', api);
 
 app.listen(3000, function () {
   logger.info('Smart Express v.' + jsonPackage.version);
-  if (!process.env.VCAP_SERVICES)
-  {
-      logger.info('Running on http://localhost:3000');
-  }
+  logger.info('Running on http://localhost:3000');
 });
 
 module.exports = app;

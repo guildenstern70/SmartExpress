@@ -4,6 +4,9 @@ env:
   es6: true
 extends:
   - 'eslint:recommended'
+  - 'prettier'
+plugins:
+  - 'babel'
 parserOptions:
   ecmaVersion: 8
   sourceType: module
