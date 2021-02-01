@@ -33,4 +33,8 @@ router.get('/', ca.checkAuth, function(req, res) {
     res.render(TEMPLATE, context);
 });
 
+router.get('/index', function(req, res) {
+    res.redirect('/');
+});
+
 module.exports = router;
