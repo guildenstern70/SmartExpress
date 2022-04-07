@@ -44,7 +44,7 @@
         "request": "^2.88.2",
         "serve-favicon": "^2.5.0",
         "what-input": "^5.2.10",
-        "winston": "^2.4.5"
+        "winston": "^3.3.0"
     },
     "devDependencies": {
         "@babel/core": "^7.15.5",
